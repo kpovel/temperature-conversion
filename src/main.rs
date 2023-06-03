@@ -1,8 +1,20 @@
 use std::io;
 
 fn main() {
-    select_convert_to();
-    enter_temperature();
+    let convert_to = select_convert_to();
+    let entered_temperature = enter_temperature();
+    let converted_temperature = convert_temperature(convert_to, entered_temperature);
+    println!("\nConverted temperature is: {converted_temperature}");
+}
+
+fn convert_temperature(convert_to: &'static str, entered_temperature: f64) -> f64 {
+    if convert_to == "Celsius" {
+        (entered_temperature - 32.0) * 5.0 / 9.0
+    } else if convert_to == "Fahrenheit" {
+        (entered_temperature * 9.0 / 5.0) + 32.0
+    } else {
+        0.0
+    }
 }
 
 fn select_convert_to() -> &'static str {
